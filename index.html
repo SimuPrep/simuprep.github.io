@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SimuPrep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;1,500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+
+:root{
+  --bg:       #ffffff;
+  --bg2:      #f7f6f3;
+  --bg3:      #f1efe9;
+  --border:   #e8e5de;
+  --text:     #1a1a1a;
+  --text2:    #4a4a4a;
+  --text3:    #787878;
+  --accent:   #2563eb;
+  --accent-bg:#eff4ff;
+  --tag-bg:   #f0efec;
+  --tag-text: #5a5a5a;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;
+}
+.logo{
+  font-family:'Lora',serif;font-weight:600;font-size:1.05rem;
+  color:var(--text);text-decoration:none;letter-spacing:-0.01em;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.logo-mark{
+  width:22px;height:22px;border-radius:5px;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+}
+.logo-mark svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.nav-links{display:flex;align-items:center;gap:1.75rem;}
+.nav-links a{font-size:0.875rem;font-weight:500;color:var(--text3);text-decoration:none;transition:color .15s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{
+  font-size:0.875rem;font-weight:600;
+  padding:0.45rem 1.1rem;
+  background:var(--text);color:#fff;
+  border-radius:6px;text-decoration:none;
+  transition:opacity .15s;
+}
+.nav-cta:hover{opacity:0.82;}
+
+/* ── PAGE SHELL ── */
+main{max-width:720px;margin:0 auto;padding:5rem 2rem 6rem;}
+
+/* ── HERO ── */
+.hero{
+  padding-bottom:3.5rem;
+  border-bottom:1px solid var(--border);
+  margin-bottom:3.5rem;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent);background:var(--accent-bg);
+  padding:0.25rem 0.7rem;border-radius:4px;
+  margin-bottom:1.5rem;
+}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+.hero h1{
+  font-family:'Lora',serif;font-weight:600;
+  font-size:clamp(2rem,5vw,2.75rem);
+  line-height:1.18;letter-spacing:-0.025em;
+  color:var(--text);margin-bottom:1.25rem;
+}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero-desc{
+  font-size:1.025rem;color:var(--text2);
+  line-height:1.78;margin-bottom:2rem;
+}
+.hero-btns{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.btn{
+  font-size:0.9rem;font-weight:600;
+  padding:0.6rem 1.35rem;border-radius:7px;
+  text-decoration:none;display:inline-block;
+  transition:all .15s;cursor:pointer;border:none;
+}
+.btn-dark{background:var(--text);color:#fff;}
+.btn-dark:hover{opacity:.82;}
+.btn-border{background:transparent;color:var(--text);border:1.5px solid var(--border);}
+.btn-border:hover{background:var(--bg2);border-color:#d0cdc6;}
+
+/* ── WIN BANNER ── */
+.win-banner{
+  display:flex;align-items:flex-start;gap:1rem;
+  background:var(--bg2);border:1px solid var(--border);
+  border-left:3px solid var(--accent);
+  border-radius:8px;padding:1.25rem 1.5rem;
+  margin-bottom:3.5rem;
+}
+.win-icon{font-size:1.25rem;flex-shrink:0;margin-top:0.1rem;}
+.win-text{}
+.win-text strong{font-size:0.9rem;font-weight:600;color:var(--text);display:block;margin-bottom:0.2rem;}
+.win-text p{font-size:0.875rem;color:var(--text2);line-height:1.65;}
+
+/* ── SECTION ── */
+.section{margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid var(--border);}
+.section:last-of-type{border-bottom:none;padding-bottom:0;}
+.section-label{
+  font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem;
+}
+.section-label::before{content:'';width:12px;height:1px;background:var(--text3);}
+h2{
+  font-family:'Lora',serif;font-size:1.35rem;font-weight:600;
+  letter-spacing:-0.015em;color:var(--text);margin-bottom:0.875rem;line-height:1.3;
+}
+p.body{font-size:0.9875rem;color:var(--text2);line-height:1.78;margin-bottom:0.875rem;}
+p.body:last-child{margin-bottom:0;}
+
+/* ── HOW IT WORKS ── */
+.steps{display:flex;flex-direction:column;gap:0;margin-top:0.5rem;}
+.step{
+  display:flex;gap:1.25rem;
+  padding:1.25rem 0;
+  border-bottom:1px solid var(--border);
+}
+.step:last-child{border-bottom:none;}
+.step-num{
+  font-size:0.75rem;font-weight:600;color:var(--accent);
+  min-width:1.5rem;padding-top:0.15rem;opacity:.7;
+}
+.step-body h3{font-size:0.9375rem;font-weight:600;color:var(--text);margin-bottom:0.3rem;}
+.step-body p{font-size:0.875rem;color:var(--text2);line-height:1.7;}
+
+/* ── INDUSTRIES ── */
+.tag-grid{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.875rem;}
+.tag{
+  font-size:0.825rem;font-weight:500;color:var(--tag-text);
+  background:var(--tag-bg);border:1px solid var(--border);
+  padding:0.3rem 0.75rem;border-radius:5px;
+}
+
+/* ── TWO COL ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:0.875rem;}
+.card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:8px;padding:1.25rem;
+}
+.card h3{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:0.5rem;}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:0.35rem;}
+.card ul li{
+  font-size:0.84rem;color:var(--text2);
+  display:flex;align-items:flex-start;gap:0.5rem;line-height:1.55;
+}
+.card ul li::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;margin-top:0.45rem;
+}
+
+/* ── CONTACT ── */
+.contact-block{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:8px;padding:1.5rem;margin-top:0.875rem;
+}
+.contact-row{
+  display:flex;align-items:center;gap:0.75rem;
+  padding:0.65rem 0;border-bottom:1px solid var(--border);
+  font-size:0.9rem;
+}
+.contact-row:last-child{border-bottom:none;padding-bottom:0;}
+.contact-row:first-child{padding-top:0;}
+.contact-key{font-weight:500;color:var(--text);min-width:90px;flex-shrink:0;}
+.contact-val{color:var(--text2);}
+.contact-val a{color:var(--accent);text-decoration:none;}
+.contact-val a:hover{text-decoration:underline;}
+.contact-placeholder{
+  font-size:0.82rem;color:var(--text3);font-style:italic;
+}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:1.5rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:720px;margin:0 auto;
+}
+.footer-logo{
+  font-family:'Lora',serif;font-weight:600;font-size:0.9rem;
+  color:var(--text);text-decoration:none;
+}
+footer span{font-size:0.8rem;color:var(--text3);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  main{padding:3rem 1.25rem 4rem;}
+  nav{padding:0 1.25rem;}
+  .two-col{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem;}
+  .nav-links{gap:1.25rem;}
+}
+@media(max-width:420px){
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span class="logo-mark">
+      <svg viewBox="0 0 12 12"><path d="M6 1l1.2 3.5H11l-2.9 2.1 1.1 3.4L6 8 2.8 10l1.1-3.4L1 4.5h3.8z"/></svg>
+    </span>
+    SimuPrep
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#how">How it works</a>
+    <a href="#industries">Industries</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge"><span class="badge-dot"></span>AI-Driven Readiness Platform</div>
+    <h1>The <em>pre-simulation</em> layer for professional training.</h1>
+    <p class="hero-desc">SimuPrep builds the technical knowledge and psychological confidence learners need before they enter high-stakes simulation environments — so your simulation investment pays off.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-dark">Get Early Access</a>
+      <a href="#about" class="btn btn-border">Learn more</a>
+    </div>
+  </div>
+
+  <!-- WIN BANNER -->
+  <div class="win-banner">
+    <div class="win-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>
+    </div>
+    <div class="win-text">
+      <strong>First Place — NatHacks (Alberta's Largest Hackathon)</strong>
+      <p>SimuPrep won first place at NatHacks for our work with the Center for Advanced Medical Simulation — recognised for building AI-driven readiness tools that address a critical gap in professional simulation training.</p>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section" id="about">
+    <div class="section-label">About</div>
+    <h2>Solving the confidence gap in professional training</h2>
+    <p class="body">Educational institutions and corporations spend millions on hyper-realistic simulations, yet many students enter these high-stakes environments underprepared. The simulation doesn't fail — the preparation does.</p>
+    <p class="body">SimuPrep provides the essential pre-simulation layer. By leveraging top-of-the-line OpenAI models, we provide students with tailored scenarios and MCQs that adapt to their specific performance. Our platform doesn't just test knowledge — it builds the psychological readiness and technical confidence required to succeed in high-pressure environments.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section" id="how">
+    <div class="section-label">How it works</div>
+    <h2>From onboarding to simulation-ready in three steps</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Identify the readiness gap</h3>
+          <p>SimuPrep assesses each learner's baseline knowledge and surfaces the exact cognitive and psychological gaps that could compromise their simulation performance.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Train with adaptive AI scenarios</h3>
+          <p>Scenarios and MCQs powered by top-tier OpenAI models adapt in real time to each learner's specific performance — closing gaps where it matters most before simulation day.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Enter the simulation ready</h3>
+          <p>Learners arrive with verified technical competence and the psychological resilience to perform under pressure. Instructors see cohort readiness before the session begins.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INDUSTRIES -->
+  <div class="section" id="industries">
+    <div class="section-label">Industries</div>
+    <h2>Built for any field where simulation is mission-critical</h2>
+    <p class="body">If your sector relies on simulation to train professionals for high-stakes environments, SimuPrep is built for you.</p>
+    <div class="tag-grid">
+      <span class="tag">Healthcare & Nursing</span>
+      <span class="tag">Medical Education</span>
+      <span class="tag">Aviation & Aerospace</span>
+      <span class="tag">Military & Defence</span>
+      <span class="tag">Emergency Response</span>
+      <span class="tag">Energy & Nuclear</span>
+      <span class="tag">Corporate L&D</span>
+    </div>
+  </div>
+
+  <!-- FOR WHO -->
+  <div class="section">
+    <div class="section-label">Built for</div>
+    <h2>Students and instructors, one platform</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>Students & Trainees</h3>
+        <ul>
+          <li>Tailored scenarios adapted to your performance</li>
+          <li>MCQs that close your exact knowledge gaps</li>
+          <li>Pressure conditioning for high-stakes environments</li>
+          <li>Live readiness score before simulation day</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Instructors & Program Directors</h3>
+        <ul>
+          <li>Cohort-level readiness analytics</li>
+          <li>At-risk learner identification</li>
+          <li>Curriculum-aligned scenario & MCQ banks</li>
+          <li>Integrates with your existing LMS</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section" id="contact">
+    <div class="section-label">Contact</div>
+    <h2>Get in touch</h2>
+    <p class="body">SimuPrep is in early access for select institutions and simulation training programs. Reach out and we'll respond within 48 hours.</p>
+    <div class="contact-block">
+      <div class="contact-row">
+        <span class="contact-key">Website</span>
+        <span class="contact-val"><a href="https://simuprep.vercel.app" target="_blank">simuprep.vercel.app</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-key">Email</span>
+        <span class="contact-val contact-placeholder">Contact info coming soon</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-key">LinkedIn</span>
+        <span class="contact-val contact-placeholder">Contact info coming soon</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-key">Location</span>
+        <span class="contact-val">Alberta, Canada</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">SimuPrep</a>
+  <span>© 2026 SimuPrep. The AI Readiness Platform for Simulation Training.</span>
+</footer>
+
+</body>
+</html>
